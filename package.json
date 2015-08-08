@@ -1,0 +1,39 @@
+{
+  "name": "TimeTrackr",
+  "version": "0.1.0",
+  "description": "Agnostic React Frontend",
+  "main": "index.js",
+  "scripts": {
+    "devserver": "./node_modules/.bin/webpack-dev-server --progress --colors --watch"
+  },
+  "author": "Pierre Criulanscy",
+  "license": "ISC",
+  "devDependencies": {
+    "amd-define-factory-patcher-loader": "^1.0.0",
+    "babel": "^5.8.21",
+    "babel-core": "^5.8.21",
+    "babel-loader": "^5.3.2",
+    "bootstrap": "^3.3.5",
+    "core-js": "^1.0.1",
+    "css-loader": "^0.15.6",
+    "exports-loader": "^0.6.2",
+    "file-loader": "^0.8.4",
+    "flux": "^2.0.3",
+    "image-webpack-loader": "^1.6.1",
+    "imagemin": "^3.2.0",
+    "imports-loader": "^0.6.4",
+    "install": "^0.1.8",
+    "jquery": "^2.1.4",
+    "object-assign": "^3.0.0",
+    "react": "^0.13.3",
+    "react-bootstrap": "^0.24.3",
+    "react-router": "^0.13.3",
+    "script-loader": "^0.6.1",
+    "sizzle": "^2.2.0",
+    "style-loader": "^0.12.3",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.11.0",
+    "webpack-bundle-tracker": "0.0.51",
+    "webpack-dev-server": "^1.10.1"
+  }
+}
