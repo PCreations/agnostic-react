@@ -1,17 +1,63 @@
 var React = require('react');
-var Jumbotron = require('react-bootstrap').Jumbotron;
+var Row = require('react-bootstrap').Row;
+var Col = require('react-bootstrap').Col;
 
-module.exports = React.createClass({
+var TaskListItem = require('./TaskListItem.react');
+var TaskStore = require('../stores/TaskStore');
+var TaskConstants = require('../constants/TaskConstants');
+
+
+function getStateFromStores() {
+    return {
+        tasks: TaskStore.getAll()
+    };
+}
+
+var TaskList = React.createClass({
+
+    getInitialState: function() {
+        var state = getStateFromStores();
+        return state;
+    },
+
+    componentDidMount: function() {
+        TaskStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount: function() {
+        TaskStore.removeChangeListener(this._onChange);
+    },
 
     render: function() {
+        var self = this;
+        if (self.state.tasks == TaskConstants.Async.TASK_LIST_LOADING) {
+            return (
+                <p>Loading...</p>
+            )
+        }
+
+        var tasks = Object.keys(self.state.tasks).map(function(taskId) {
+            return (
+                <Row key={taskId}>
+                    <Col xs={12}>
+                        <TaskListItem task={self.state.tasks[taskId]} />
+                    </Col>
+                </Row>
+            )
+        });
 
         return (
-            <Jumbotron>
-                <h1>Hello, world !</h1>
-                <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            </Jumbotron>
+            <div id="tasks-container">
+                {tasks}
+            </div>
         )
 
+    },
+
+    _onChange: function() {
+        this.setState(getStateFromStores());
     }
 
 });
+
+module.exports = TaskList
